@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shopx/api/api_response.dart';
 import 'package:shopx/models/product_model.dart';
@@ -27,6 +28,10 @@ class ProductController extends GetxController {
         apiResponse.errorMessage,
         snackPosition: SnackPosition.BOTTOM,
       );
+
+      Future.delayed(Duration(seconds: 5), () {
+        SystemNavigator.pop();
+      });
     }
   }
 }
