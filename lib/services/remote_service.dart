@@ -11,13 +11,11 @@ class RemoteServices {
 
   static Future<ApiResponse> fetchProducts() async {
     try {
-      
       http.Response response = await client.get(
         Uri.parse(
           'https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline',
         ),
       );
-
 
       if (response.statusCode == 200) {
         return ApiResponse(data: response.body);
@@ -26,10 +24,10 @@ class RemoteServices {
             error: true, errorMessage: response.statusCode.toString());
       }
     } on SocketException {
-      ApiResponse(error: true, errorMessage: 'no internet connection');
+      return ApiResponse(error: true, errorMessage: 'no internet connection');
     } catch (e) {
-      ApiResponse(error: true, errorMessage: e.toString());
+      print(e.toString());
+      return ApiResponse(error: true, errorMessage: e.toString());
     }
-    return ApiResponse(error: true, errorMessage: 'pta nahi kya hua');
   }
 }

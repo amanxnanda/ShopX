@@ -22,7 +22,11 @@ class ProductController extends GetxController {
       productList.value = productFromJson(apiResponse.data);
       isLoading(false);
     } else {
-      Get.snackbar('Error', apiResponse.errorMessage);
+      Get.snackbar(
+        'Error',
+        apiResponse.errorMessage,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }
